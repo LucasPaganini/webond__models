@@ -1,9 +1,10 @@
 {
   "name": "webond__models",
   "version": "1.0.0",
-  "description": "This is MESA Empresarial's courses platform project Web API. It runs on localhost:3000 and must be up for the front-end to work properly.",
-  "main": "jasmineReporter.js",
+  "description": "",
+  "main": "dist/index.js",
   "scripts": {
+    "install": "npm run build",
     "build": "tsc"
   },
   "repository": {

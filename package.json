@@ -1,0 +1,25 @@
+{
+  "name": "webond__models",
+  "version": "1.0.0",
+  "description": "This is MESA Empresarial's courses platform project Web API. It runs on localhost:3000 and must be up for the front-end to work properly.",
+  "main": "jasmineReporter.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LucasPaganini/webond__models.git"
+  },
+  "author": "Lucas Paganini",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/LucasPaganini/webond__models/issues"
+  },
+  "homepage": "https://github.com/LucasPaganini/webond__models#readme",
+  "devDependencies": {
+    "typescript": "^3.2.4"
+  },
+  "dependencies": {
+    "fp-ts": "^1.13.0"
+  }
+}

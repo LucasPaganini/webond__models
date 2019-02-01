@@ -2,9 +2,9 @@
   "name": "webond__models",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "scripts": {
-    "install": "[ ! -d ./dist ] && npm install . && npm run build",
+    "install": "([ ! -d ./lib ] && [ ! -d ./node_modules ] && npm install . && npm run build) || exit 0",
     "build": "tsc"
   },
   "repository": {

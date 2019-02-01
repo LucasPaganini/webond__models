@@ -4,7 +4,7 @@
   "description": "",
   "main": "lib/index.js",
   "scripts": {
-    "install": "([ ! -d ./lib ] && [ ! -d ./node_modules ] && npm install . && npm run build) || exit 0",
+    "install": "([ ! -d ./lib ] && [ ! -d ./node_modules ] && npm install . && npm run build && rm -rf ./node_modules) || exit 0",
     "build": "tsc"
   },
   "repository": {

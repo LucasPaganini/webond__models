@@ -3,10 +3,20 @@ import { Either, left, right } from 'fp-ts/lib/Either'
 import { RawBasicString } from './RawBasicString'
 import { BasicString } from './BasicString'
 
-const MIN_LENGTH = 1
-const MAX_LENGTH = 255
+export type Error =
+  | 'Must not be empty'
+  | `Length too small`
+  | `Max length exceeded`
 
-type Error = 'Must not be empty' | `Length too small` | `Max length exceeded`
+interface Options {
+  min: number
+  max: number
+}
+
+const defaultOptions: Options = {
+  min: 1,
+  max: 255,
+}
 
 /**
  * Try to instantiate from a raw value.
@@ -14,12 +24,18 @@ type Error = 'Must not be empty' | `Length too small` | `Max length exceeded`
  * @param {RawBasicString} rawValue Raw value
  * @returns {validation.Validation<string[], BasicString>} Error array or instance
  */
-export const from = (value: RawBasicString): Either<Error, BasicString> => {
-  return value.trim() === ''
+export const from = (
+  value: RawBasicString,
+  options?: Partial<Options>,
+): Either<Error, BasicString> => {
+  const _options: Options = { ...defaultOptions, ...options }
+  const _value = value.trim()
+
+  return _value === ''
     ? left<Error, BasicString>('Must not be empty')
-    : value.length < MIN_LENGTH
+    : _value.length < _options.min
     ? left<Error, BasicString>(`Length too small`)
-    : value.length > MAX_LENGTH
+    : _value.length > _options.max
     ? left<Error, BasicString>(`Max length exceeded`)
-    : right(new BasicString(value))
+    : right(new BasicString(_value))
 }

@@ -6,11 +6,7 @@ import { BasicString } from '../BasicString'
 import { Password } from './Password'
 import { RawPassword } from './RawPassword'
 
-type _Error =
-  | 'Must have at least one lowercase letter'
-  | 'Must have at least one uppercase letter'
-  | 'Must have at least one number'
-  | 'Must not have tabs (\\t) or line breaks (\\n)'
+type _Error = 'Must not have tabs (\\t) or line breaks (\\n)'
 
 type _BasicStringMappedError =
   | 'Must not be empty'
@@ -22,13 +18,7 @@ type Error = _Error | _BasicStringMappedError
 export const from = (value: RawPassword): Either<Error, Password> => {
   const fn = (_value: BasicString): Either<_Error, Password> => {
     const __value = _value.valueOf()
-    return __value.search(/[a-z]/) === -1
-      ? left<_Error, Password>('Must have at least one lowercase letter')
-      : __value.search(/[A-Z]/) === -1
-      ? left<_Error, Password>('Must have at least one uppercase letter')
-      : __value.search(/[0-9]/) === -1
-      ? left<_Error, Password>('Must have at least one number')
-      : __value.search(/[\t\n]/) !== -1
+    return __value.search(/[\t\n]/) !== -1
       ? left<_Error, Password>('Must not have tabs (\\t) or line breaks (\\n)')
       : right(new Password(__value))
   }
